@@ -1,10 +1,23 @@
 function refreshWeather(response) {
-    let temperatureElement = document.querySelector(#"temperature");
-    let temperature = response.data.temperature.current;
-    temperatureElement.innerHTML = response.data.temperature.current;
-    let cityElement = document.querySelector("#city");
-    cityElement.innerHTML = response.data.city;
-    temperatureElement.innerHTML = Math.round(temperature);
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+
+
+
+  console.log(response.data);
+
+  cityElement.innerHTML = response.data.city;
+  timeElement.innerHTML = `${date.getDay()}`:`${date.getHours()}`:`${date.getMinutes()}`;
+  descriptionElement.innerHTML = response.data.condition.description;
+  temperatureElement.innerHTML = Math.round(temperature);
+  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
 }
 
 function searchCity(city) {
@@ -13,11 +26,15 @@ function searchCity(city) {
   axios.get(apiURL).then(refreshWeather);
 }
 
+function formatDate {
+
+  
+}
+
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
-  let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = searchInput.value;
+  
   searchCity(searchInput.value);
 }
 
