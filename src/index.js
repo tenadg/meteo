@@ -54,11 +54,11 @@ function handleSearchSubmit(event) {
 
 function displayForecast() {
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  let forecastHTML = "";
+  let forecastHtml = "";
 
   days.foreEach(function (day) {
-    forecastHTML =
-      forecastHTML +
+    forecastHtml =
+      forecastHtml +
       `
       <div class="weather-forecast-day">
         <div class="weather-forecast-date">${day}</div>
@@ -74,11 +74,11 @@ function displayForecast() {
   });
 
   let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = forecastHTML;
+  forecastElement.innerHTML = forecastHtml;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Asunción:");
+searchCity("Asunción");
 displayForecast();
